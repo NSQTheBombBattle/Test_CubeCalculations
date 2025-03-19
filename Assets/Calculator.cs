@@ -42,6 +42,7 @@ public class Calculator : MonoBehaviour
                 i--;
             }
         }
+
         for (int i = 0; i < operationList.Count; i++)
         {
             if (operationList[i].operationType == OperationType.Multiply)
@@ -52,6 +53,7 @@ public class Calculator : MonoBehaviour
                 i--;
             }
         }
+
         for (int i = 0; i < operationList.Count; i++)
         {
             if (operationList[i].operationType == OperationType.Minus)
@@ -59,6 +61,7 @@ public class Calculator : MonoBehaviour
                 numberList[i + 1].slotNumber = -numberList[i + 1].slotNumber;
             }
         }
+
         float answer = 0;
         for (int i = 0; i < numberList.Count; i++)
         {
