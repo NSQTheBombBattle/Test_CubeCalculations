@@ -4,41 +4,33 @@ using UnityEngine;
 public class Calculator : MonoBehaviour
 {
     [SerializeField] private List<GameObject> slotList;
-
-    [SerializeField] private List<NumberSlot> numberList;
-
-    [SerializeField] private List<OperatorSlot> operationList;
+    private List<NumberSlot> numberList = new List<NumberSlot>();
+    private List<OperatorSlot> operationList = new List<OperatorSlot>();
 
     private void Start()
     {
-        TestingCalculation();
-        //float answer = numberList[0].slotNumber;
-        //for (int i = 1; i < numberList.Count; i++)
-        //{
-        //    OperationType operation = operationList[i - 1].operationType;
-        //    switch (operation)
-        //    {
-        //        case OperationType.Add:
-        //            answer = answer + numberList[i].slotNumber;
-        //            break;
-        //        case OperationType.Minus:
-        //            answer = answer - numberList[i].slotNumber;
-        //            break;
-        //        case OperationType.Multiply:
-        //            answer = answer * numberList[i].slotNumber;
-        //            break;
-        //        case OperationType.Divide:
-        //            answer = answer / numberList[i].slotNumber;
-        //            break;
-        //        default:
-        //            break;
-        //            //throw new ArgumentException("Invalid operation type");
-        //    }
-        //}
-        //Debug.Log(answer);
+        InitSlots();
+        Calculate();
     }
 
-    private void TestingCalculation()
+    private void InitSlots()
+    {
+        for (int i = 0; i < slotList.Count; i++)
+        {
+            if (slotList[i].GetComponent<NumberSlot>() != null)
+            {
+                numberList.Add(slotList[i].GetComponent<NumberSlot>());
+                slotList[i].GetComponent<NumberSlot>().InitText();
+            }
+            else if (slotList[i].GetComponent<OperatorSlot>() != null)
+            {
+                operationList.Add(slotList[i].GetComponent<OperatorSlot>());
+                slotList[i].GetComponent<OperatorSlot>().InitText();
+            }
+        }
+    }
+
+    private void Calculate()
     {
         for (int i = 0; i < operationList.Count; i++)
         {

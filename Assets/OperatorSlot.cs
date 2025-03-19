@@ -17,7 +17,7 @@ public class OperatorSlot : MonoBehaviour
     public OperationType operationType;
 
     // Start is called before the first frame update
-    void Start()
+    public void InitText()
     {
         switch (operationType)
         {
