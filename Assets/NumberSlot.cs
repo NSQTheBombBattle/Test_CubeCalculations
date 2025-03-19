@@ -8,7 +8,7 @@ public class NumberSlot : MonoBehaviour
     [SerializeField] private TMP_Text numberText;
     public float slotNumber;
 
-    private void Start()
+    private void Awake()
     {
         numberText.text = slotNumber.ToString();
     }
