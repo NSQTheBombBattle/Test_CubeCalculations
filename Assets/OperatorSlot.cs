@@ -34,14 +34,8 @@ public class OperatorSlot : MonoBehaviour
                 operationText.text = "/";
                 break;
             default:
+                operationText.text = "?";
                 break;
-                //throw new ArgumentException("Invalid operation type");
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
