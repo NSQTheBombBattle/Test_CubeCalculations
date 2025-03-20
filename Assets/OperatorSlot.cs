@@ -38,4 +38,12 @@ public class OperatorSlot : MonoBehaviour
                 break;
         }
     }
+
+    public void GetRandomOperation()
+    {
+        OperationType[] values = (OperationType[])System.Enum.GetValues(typeof(OperationType));
+        int randomIndex = Random.Range(0, values.Length);
+        operationType = values[randomIndex];
+    }
 }
+

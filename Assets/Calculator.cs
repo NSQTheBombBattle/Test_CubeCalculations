@@ -10,6 +10,7 @@ public class Calculator : MonoBehaviour
     private void Start()
     {
         InitSlots();
+        RandomSlots();
         Calculate();
     }
 
@@ -27,6 +28,20 @@ public class Calculator : MonoBehaviour
                 operationList.Add(slotList[i].GetComponent<OperatorSlot>());
                 slotList[i].GetComponent<OperatorSlot>().InitText();
             }
+        }
+    }
+
+    private void RandomSlots()
+    {
+        for (int i = 0; i < numberList.Count; i++)
+        {
+            numberList[i].slotNumber = Random.Range(0, 10);
+            numberList[i].InitText();
+        }
+        for (int i = 0; i < operationList.Count; i++)
+        {
+            operationList[i].GetRandomOperation();
+            operationList[i].InitText();
         }
     }
 
