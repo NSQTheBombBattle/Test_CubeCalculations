@@ -35,12 +35,17 @@ public class Calculator : MonoBehaviour
     {
         for (int i = 0; i < numberList.Count; i++)
         {
-            numberList[i].slotNumber = Random.Range(0, 10);
+            numberList[i].slotNumber = Random.Range(1, 10);
             numberList[i].InitText();
         }
         for (int i = 0; i < operationList.Count; i++)
         {
             operationList[i].GetRandomOperation();
+            if(operationList[i].operationType == OperationType.Divide)
+            {
+                numberList[i].slotNumber = numberList[i].slotNumber * numberList[i + 1].slotNumber;
+                numberList[i].InitText();
+            }
             operationList[i].InitText();
         }
     }
