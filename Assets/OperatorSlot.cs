@@ -8,7 +8,8 @@ public enum OperationType
     Add,
     Minus,
     Multiply,
-    Divide
+    Divide,
+    None
 }
 
 public class OperatorSlot : MonoBehaviour

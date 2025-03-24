@@ -4,8 +4,8 @@ using UnityEngine;
 public class Calculator : MonoBehaviour
 {
     [SerializeField] private List<GameObject> slotList;
-    private List<NumberSlot> numberList = new List<NumberSlot>();
-    private List<OperatorSlot> operationList = new List<OperatorSlot>();
+    private List<float> numberList = new List<float>();
+    private List<OperationType> operationList = new List<OperationType>();
 
     private void Start()
     {
@@ -36,9 +36,9 @@ public class Calculator : MonoBehaviour
                 if (!isNumber)
                 {
                     Debug.Log("Double number detected!");
-                    break;
+                    return;
                 }
-                numberList.Add(slotList[i].GetComponent<NumberSlot>());
+                numberList.Add(slotList[i].GetComponent<NumberSlot>().slotNumber);
             }
             else if (slotList[i].GetComponent<OperatorSlot>() != null)
             {
@@ -46,35 +46,35 @@ public class Calculator : MonoBehaviour
                     continue;
                 if (isNumber)
                 {
-                    Debug.Log("Double number detected!");
-                    break;
+                    Debug.Log("Double operator detected!");
+                    return;
                 }
-                operationList.Add(slotList[i].GetComponent<OperatorSlot>());
+                operationList.Add(slotList[i].GetComponent<OperatorSlot>().operationType);
             }
             isNumber = !isNumber;
         }
-        if (operationList.Count != numberList.Count - 1)
+        if (isNumber)
         {
-            Debug.Log("Invalid Operation! The number of the operator must be 1 lesser than the number!");
-            Debug.Log($"Operator count: {operationList.Count}, number count: {numberList.Count}");
+            Debug.Log("Invalid Operation! Equation cannot ends with an operator");
+            return;
         }
         Calculate();
     }
 
     private void RandomSlots()
     {
-        for (int i = 0; i < numberList.Count; i++)
-        {
-            numberList[i].slotNumber = Random.Range(1, 10);
-        }
-        for (int i = 0; i < operationList.Count; i++)
-        {
-            operationList[i].GetRandomOperation();
-            if(operationList[i].operationType == OperationType.Divide)
-            {
-                numberList[i].slotNumber = numberList[i].slotNumber * numberList[i + 1].slotNumber;
-            }
-        }
+        //for (int i = 0; i < numberList.Count; i++)
+        //{
+        //    numberList[i] = Random.Range(1, 10);
+        //}
+        //for (int i = 0; i < operationList.Count; i++)
+        //{
+        //    operationList[i].GetRandomOperation();
+        //    if(operationList[i].operationType == OperationType.Divide)
+        //    {
+        //        numberList[i].slotNumber = numberList[i].slotNumber * numberList[i + 1].slotNumber;
+        //    }
+        //}
     }
 
     private void RandomSlots2()
@@ -86,9 +86,9 @@ public class Calculator : MonoBehaviour
     {
         for (int i = 0; i < operationList.Count; i++)
         {
-            if (operationList[i].operationType == OperationType.Divide)
+            if (operationList[i] == OperationType.Divide)
             {
-                numberList[i].slotNumber = numberList[i].slotNumber / numberList[i + 1].slotNumber;
+                numberList[i] = numberList[i] / numberList[i + 1];
                 numberList.RemoveAt(i + 1);
                 operationList.RemoveAt(i);
                 i--;
@@ -97,9 +97,9 @@ public class Calculator : MonoBehaviour
 
         for (int i = 0; i < operationList.Count; i++)
         {
-            if (operationList[i].operationType == OperationType.Multiply)
+            if (operationList[i] == OperationType.Multiply)
             {
-                numberList[i].slotNumber = numberList[i].slotNumber * numberList[i + 1].slotNumber;
+                numberList[i] = numberList[i] * numberList[i + 1];
                 numberList.RemoveAt(i + 1);
                 operationList.RemoveAt(i);
                 i--;
@@ -108,16 +108,16 @@ public class Calculator : MonoBehaviour
 
         for (int i = 0; i < operationList.Count; i++)
         {
-            if (operationList[i].operationType == OperationType.Minus)
+            if (operationList[i] == OperationType.Minus)
             {
-                numberList[i + 1].slotNumber = -numberList[i + 1].slotNumber;
+                numberList[i + 1] = -numberList[i + 1];
             }
         }
 
         float answer = 0;
         for (int i = 0; i < numberList.Count; i++)
         {
-            answer += numberList[i].slotNumber;
+            answer += numberList[i];
         }
         Debug.Log(answer);
     }

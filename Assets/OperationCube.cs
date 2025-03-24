@@ -29,6 +29,9 @@ public class OperationCube : MonoBehaviour
             case OperationType.Divide:
                 operationText.text = "/";
                 break;
+            case OperationType.None:
+                operationText.text = "?";
+                break;
             default:
                 operationText.text = "?";
                 break;
