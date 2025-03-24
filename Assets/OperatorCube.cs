@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class OperationCube : MonoBehaviour
+public class OperatorCube : MonoBehaviour
 {
     public OperationType operationType;
     [SerializeField] private TMP_Text operationText;

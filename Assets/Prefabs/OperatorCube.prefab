@@ -182,8 +182,8 @@ GameObject:
   - component: {fileID: 8956320158106592911}
   - component: {fileID: 5948743921332025093}
   - component: {fileID: 558780619298953002}
-  - component: {fileID: 7204253780772233089}
   - component: {fileID: 953865901531554706}
+  - component: {fileID: 7668296410092281837}
   m_Layer: 0
   m_Name: OperatorCube
   m_TagString: Untagged
@@ -304,20 +304,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
---- !u!114 &7204253780772233089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7580327469031952062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b39b270c400450844a7777e53cd22ad6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  operationType: 3
-  operationText: {fileID: 6710428151424016131}
 --- !u!50 &953865901531554706
 Rigidbody2D:
   serializedVersion: 4
@@ -345,3 +331,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &7668296410092281837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7580327469031952062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aff05a2df4fda6648b4915ec08167ba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  operationType: 0
+  operationText: {fileID: 0}
