@@ -10,7 +10,7 @@ public class Calculator : MonoBehaviour
     private void Start()
     {
         InitSlots();
-        RandomSlots();
+        //RandomSlots();
         Calculate();
     }
 
@@ -20,11 +20,15 @@ public class Calculator : MonoBehaviour
         {
             if (slotList[i].GetComponent<NumberSlot>() != null)
             {
+                if (slotList[i].GetComponent<NumberSlot>().isEmpty)
+                    continue;
                 numberList.Add(slotList[i].GetComponent<NumberSlot>());
                 slotList[i].GetComponent<NumberSlot>().InitText();
             }
             else if (slotList[i].GetComponent<OperatorSlot>() != null)
             {
+                if (slotList[i].GetComponent<OperatorSlot>().isEmpty)
+                    continue;
                 operationList.Add(slotList[i].GetComponent<OperatorSlot>());
                 slotList[i].GetComponent<OperatorSlot>().InitText();
             }

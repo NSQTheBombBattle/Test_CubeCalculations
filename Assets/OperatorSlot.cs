@@ -13,6 +13,7 @@ public enum OperationType
 
 public class OperatorSlot : MonoBehaviour
 {
+    public bool isEmpty;
     [SerializeField] private TMP_Text operationText;
     public OperationType operationType;
 

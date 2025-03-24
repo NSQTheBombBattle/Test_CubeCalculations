@@ -5,6 +5,7 @@ using TMPro;
 
 public class NumberSlot : MonoBehaviour
 {
+    public bool isEmpty;
     [SerializeField] private TMP_Text numberText;
     public float slotNumber;
 
