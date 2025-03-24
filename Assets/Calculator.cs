@@ -12,9 +12,7 @@ public class Calculator : MonoBehaviour
 
     private void Start()
     {
-        //InitSlots();
         RandomSlots();
-        //Calculate();
     }
 
     private void Update()
@@ -69,24 +67,13 @@ public class Calculator : MonoBehaviour
         numberList.Clear();
         for (int i = 0; i < numberCubeList.Count; i++)
         {
-            numberList.Add(Random.Range(1, 10));
+            numberList.Add(Random.Range(1, 10)); 
+            numberCubeList[i].UpdateNumber((int)numberList[i]);
         }
         for (int i = 0; i < operatorCubeList.Count; i++)
         {
             OperationType type= GetRandomOperation();
             operationList.Add(type);
-            if (operationList[i] == OperationType.Divide)
-            {
-                numberList[i] = numberList[i] * numberList[i + 1];
-            }
-        }
-
-        for(int i = 0; i < numberCubeList.Count; i++)
-        {
-            numberCubeList[i].UpdateNumber((int)numberList[i]);
-        }
-        for (int i = 0; i < operatorCubeList.Count; i++)
-        {
             operatorCubeList[i].UpdateOperation(operationList[i]);
         }
         answer = Calculate();
@@ -97,11 +84,6 @@ public class Calculator : MonoBehaviour
         OperationType[] values = (OperationType[])System.Enum.GetValues(typeof(OperationType));
         int randomIndex = Random.Range(0, values.Length);
         return values[randomIndex];
-    }
-
-    private void RandomSlots2()
-    {
-
     }
 
     private float Calculate()
