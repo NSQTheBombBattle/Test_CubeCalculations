@@ -69,12 +69,18 @@ public class OperationCube : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GetComponent<OperatorSlot>() != null)
+        {
             operationSlot = collision.GetComponent<OperatorSlot>();
+            operationSlot.occupied = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.GetComponent<OperatorSlot>() != null)
+        {
+            operationSlot.occupied = false;
             operationSlot = null;
+        }
     }
 }

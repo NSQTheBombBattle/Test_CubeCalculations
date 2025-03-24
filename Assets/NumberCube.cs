@@ -52,12 +52,18 @@ public class NumberCube : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GetComponent<NumberSlot>() != null)
+        {
             numberSlot = collision.GetComponent<NumberSlot>();
+            numberSlot.occupied = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.GetComponent<NumberSlot>() != null)
+        {
+            numberSlot.occupied = false;
             numberSlot = null;
+        }
     }
 }

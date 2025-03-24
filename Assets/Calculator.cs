@@ -18,29 +18,49 @@ public class Calculator : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Calculate();
+            InitSlots();
         }
     }
 
     private void InitSlots()
     {
+        numberList.Clear();
+        operationList.Clear();
+        bool isNumber = true;
         for (int i = 0; i < slotList.Count; i++)
         {
             if (slotList[i].GetComponent<NumberSlot>() != null)
             {
-                if (slotList[i].GetComponent<NumberSlot>().isEmpty)
+                if (!slotList[i].GetComponent<NumberSlot>().occupied)
                     continue;
+                if (!isNumber)
+                {
+                    Debug.Log("Double number detected!");
+                    break;
+                }
                 numberList.Add(slotList[i].GetComponent<NumberSlot>());
                 slotList[i].GetComponent<NumberSlot>().InitText();
             }
             else if (slotList[i].GetComponent<OperatorSlot>() != null)
             {
-                if (slotList[i].GetComponent<OperatorSlot>().isEmpty)
+                if (!slotList[i].GetComponent<OperatorSlot>().occupied)
                     continue;
+                if (isNumber)
+                {
+                    Debug.Log("Double number detected!");
+                    break;
+                }
                 operationList.Add(slotList[i].GetComponent<OperatorSlot>());
                 slotList[i].GetComponent<OperatorSlot>().InitText();
             }
+            isNumber = !isNumber;
         }
+        if (operationList.Count != numberList.Count - 1)
+        {
+            Debug.Log("Invalid Operation! The number of the operator must be 1 lesser than the number!");
+            Debug.Log($"Operator count: {operationList.Count}, number count: {numberList.Count}");
+        }
+        Calculate();
     }
 
     private void RandomSlots()
