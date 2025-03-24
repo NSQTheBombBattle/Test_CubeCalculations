@@ -4,13 +4,16 @@ using UnityEngine;
 public class Calculator : MonoBehaviour
 {
     [SerializeField] private List<GameObject> slotList;
+    [SerializeField] private List<NumberCube> numberCubeList;
+    [SerializeField] private List<OperatorCube> operatorCubeList;
     private List<float> numberList = new List<float>();
     private List<OperationType> operationList = new List<OperationType>();
+    private float answer;
 
     private void Start()
     {
         //InitSlots();
-        //RandomSlots();
+        RandomSlots();
         //Calculate();
     }
 
@@ -18,11 +21,11 @@ public class Calculator : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            InitSlots();
+            ProcessSlots();
         }
     }
 
-    private void InitSlots()
+    private void ProcessSlots()
     {
         numberList.Clear();
         operationList.Clear();
@@ -63,18 +66,37 @@ public class Calculator : MonoBehaviour
 
     private void RandomSlots()
     {
-        //for (int i = 0; i < numberList.Count; i++)
-        //{
-        //    numberList[i] = Random.Range(1, 10);
-        //}
-        //for (int i = 0; i < operationList.Count; i++)
-        //{
-        //    operationList[i].GetRandomOperation();
-        //    if(operationList[i].operationType == OperationType.Divide)
-        //    {
-        //        numberList[i].slotNumber = numberList[i].slotNumber * numberList[i + 1].slotNumber;
-        //    }
-        //}
+        numberList.Clear();
+        for (int i = 0; i < numberCubeList.Count; i++)
+        {
+            numberList.Add(Random.Range(1, 10));
+        }
+        for (int i = 0; i < operatorCubeList.Count; i++)
+        {
+            OperationType type= GetRandomOperation();
+            operationList.Add(type);
+            if (operationList[i] == OperationType.Divide)
+            {
+                numberList[i] = numberList[i] * numberList[i + 1];
+            }
+        }
+
+        for(int i = 0; i < numberCubeList.Count; i++)
+        {
+            numberCubeList[i].UpdateNumber((int)numberList[i]);
+        }
+        for (int i = 0; i < operatorCubeList.Count; i++)
+        {
+            operatorCubeList[i].UpdateOperation(operationList[i]);
+        }
+        answer = Calculate();
+    }
+
+    public OperationType GetRandomOperation()
+    {
+        OperationType[] values = (OperationType[])System.Enum.GetValues(typeof(OperationType));
+        int randomIndex = Random.Range(0, values.Length);
+        return values[randomIndex];
     }
 
     private void RandomSlots2()
@@ -82,7 +104,7 @@ public class Calculator : MonoBehaviour
 
     }
 
-    private void Calculate()
+    private float Calculate()
     {
         for (int i = 0; i < operationList.Count; i++)
         {
@@ -119,6 +141,8 @@ public class Calculator : MonoBehaviour
         {
             answer += numberList[i];
         }
+
         Debug.Log(answer);
+        return answer;
     }
 }

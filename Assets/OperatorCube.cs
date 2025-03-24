@@ -62,6 +62,32 @@ public class OperatorCube : MonoBehaviour
         }
     }
 
+    public void UpdateOperation(OperationType typeToUpdate)
+    {
+        operationType = typeToUpdate;
+        switch (operationType)
+        {
+            case OperationType.Add:
+                operationText.text = "+";
+                break;
+            case OperationType.Minus:
+                operationText.text = "-";
+                break;
+            case OperationType.Multiply:
+                operationText.text = "X";
+                break;
+            case OperationType.Divide:
+                operationText.text = "/";
+                break;
+            case OperationType.None:
+                operationText.text = "?";
+                break;
+            default:
+                operationText.text = "?";
+                break;
+        }
+    }
+
     Vector3 GetMouseWorldPos()
     {
         Vector3 mousePoint = Input.mousePosition;

@@ -42,6 +42,12 @@ public class NumberCube : MonoBehaviour
         }
     }
 
+    public void UpdateNumber(int numberToUpdate)
+    {
+        number = numberToUpdate;
+        numberText.text = number.ToString();
+    }
+
     Vector3 GetMouseWorldPos()
     {
         Vector3 mousePoint = Input.mousePosition;
