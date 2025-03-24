@@ -46,5 +46,11 @@ public class OperatorSlot : MonoBehaviour
         int randomIndex = Random.Range(0, values.Length);
         operationType = values[randomIndex];
     }
+
+    public void UpdateOperation(OperationType type)
+    {
+        operationType = type;
+        InitText();
+    }
 }
 

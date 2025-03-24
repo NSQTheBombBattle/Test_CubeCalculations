@@ -9,9 +9,17 @@ public class Calculator : MonoBehaviour
 
     private void Start()
     {
-        InitSlots();
+        //InitSlots();
         //RandomSlots();
-        Calculate();
+        //Calculate();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Calculate();
+        }
     }
 
     private void InitSlots()

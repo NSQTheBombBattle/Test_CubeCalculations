@@ -13,4 +13,10 @@ public class NumberSlot : MonoBehaviour
     {
         numberText.text = slotNumber.ToString();
     }
+
+    public void UpdateNumber(int number)
+    {
+        slotNumber = number;
+        InitText();
+    }
 }
