@@ -14,31 +14,7 @@ public enum OperationType
 public class OperatorSlot : MonoBehaviour
 {
     public bool occupied;
-    [SerializeField] private TMP_Text operationText;
     public OperationType operationType;
-
-    // Start is called before the first frame update
-    public void InitText()
-    {
-        switch (operationType)
-        {
-            case OperationType.Add:
-                operationText.text = "+";
-                break;
-            case OperationType.Minus:
-                operationText.text = "-";
-                break;
-            case OperationType.Multiply:
-                operationText.text = "X";
-                break;
-            case OperationType.Divide:
-                operationText.text = "/";
-                break;
-            default:
-                operationText.text = "?";
-                break;
-        }
-    }
 
     public void GetRandomOperation()
     {
@@ -50,7 +26,6 @@ public class OperatorSlot : MonoBehaviour
     public void UpdateOperation(OperationType type)
     {
         operationType = type;
-        InitText();
     }
 }
 
